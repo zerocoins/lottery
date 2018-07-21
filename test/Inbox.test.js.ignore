@@ -1,0 +1,50 @@
+const assert = require('assert');  // assertion librarty from mocha
+const ganache = require ('ganache-cli'); // test network
+const Web3 = require ('web3'); // uses ABI to communicate with the ethereum netowrk over JSON RPC protocol
+
+// web3 is an instance of Web3 and we are connecting to ganache hense we use ganache connection provider
+const web3  = new Web3(ganache.provider());
+
+// testing model is this. we are going to use ganache provider to connect to ganache netwrok where we are going to deploy our contract
+// and use web3 instance to use that ganache provider over contract abi to test with mocha framework whether out contract works as it should
+
+
+/// mochha function : it  - test, describe - test suite , beforeEach - preamble test fixure setup , runs before each testing
+
+
+class Car {
+  drive() {
+    return 'Wroooom';
+  }
+  park() {
+    return 'stopped';
+  }
+}
+
+// for these tests to work, you need to
+// a) install mocha
+// b) nothing else
+
+let car;
+
+beforeEach(() => {
+  car = new Car();
+});
+
+describe('Testing a car class', () => {
+
+  // test case 1
+  it('can park', () => {
+      // assert that park function returns the string we expect
+      assert.equal(car.park(), 'stopped');
+  });
+
+// test case 2
+  it ('can drive', () => {
+    assert.equal(car.drive(),'Wroooom');
+  });
+
+
+
+
+});

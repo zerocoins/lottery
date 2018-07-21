@@ -1,0 +1,9 @@
+node_modules folder should be ignored on git
+to install necessary modules do this:
+1. if on windows 
+npm install --global --production windows-build-tools 
+2. install modules: 
+npm install --save mocha ganache-cli web3@1.0.0-beta.26
+3. check if there's anything to add (important to make sure we don't add ignored folder)
+git add --dry-run .
+4.
