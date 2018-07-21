@@ -20,8 +20,13 @@ beforeEach(async () => {
 });
 
 describe('Lottery Contract tests', () => {
-
   it('Contract should get deployed', () => {
     assert.ok(lottery.options.address);
+  });
+  it('Should enter the lottery', async () => {
+    await lottery.methods.enter().send({ from: accounts[0], value: web3.utils.toWei('1.5','ether')});
+    var players = await lottery.methods.getPlayers().call();
+    assert.equal(accounts[0], players[0]); // first you specifiy the expected value
+    assert.equal(1, players.length); // expected than actual value to compare
   });
 });
